@@ -26,8 +26,7 @@ systemctl restart salt-minion
 systemctl enable salt-minion
 
 # SSH-Befehl, um die Pillar-Datei auf dem Salt-Master zu erstellen
-ssh root@10.1.0.101 "echo 'roles:' > /srv/pillar/hosts/${HOSTNAME}.sls"
-ssh root@10.1.0.101 "echo '  - server' >> /srv/pillar/hosts/${HOSTNAME}.sls"
+ssh -o StrictHostKeyChecking=no root@10.1.0.101 "echo -e 'roles:\\n  - server' > /srv/pillar/hosts/$HOSTNAME.sls"
 
 # Warte ein paar Sekunden
 sleep 10  # 10 Sekunden warten
