@@ -25,11 +25,5 @@ echo "master: 10.1.0.101" > /etc/salt/minion.d/master.conf
 systemctl restart salt-minion
 systemctl enable salt-minion
 
-# SSH-Befehl, um die Pillar-Datei auf dem Salt-Master zu erstellen
-ssh -o StrictHostKeyChecking=no root@10.1.0.101 "echo -e 'roles:\\n  - server' > /srv/pillar/hosts/$HOSTNAME.sls"
-
-# Warte ein paar Sekunden
-sleep 10  # 10 Sekunden warten
-
 # Führe die Salt States aus
 salt-call state.apply
